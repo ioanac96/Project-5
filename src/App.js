@@ -1,7 +1,8 @@
 import React, {useState,useEffect} from 'react';
+import './App.less';
 
 function App() {
-  const [click, setClick] = useState('');
+  const [click, setClick] = useState(false);
   const [foxImage, setImage]=useState('');
 
   const switchImage = () => {
@@ -19,14 +20,14 @@ function App() {
 
   console.log(click);
   return (
-    <div>
-      <button onClick={switchImage}>Click meh</button>
-      {
-        (click) ? <img src={foxImage}></img> : (click === false && foxImage !== '') ? <img src="https://www.health.org.uk/sites/default/files/styles/landscape_3_2/public/2019-11/nhs_performance_and_waiting_times_thumbnailartboard_10_copy.png?itok=-cxl-7oS"></img> :
-         (click === false && foxImage === '') ? <img src="https://www.health.org.uk/sites/default/files/styles/landscape_3_2/public/2019-11/nhs_performance_and_waiting_times_thumbnailartboard_10_copy.png?itok=-cxl-7oS"></img>:null
-      }
-      
-      
+    <div className="page">
+      <div className="fox-box">
+        {
+          (click) ? <img src={foxImage}></img> : (click === false && foxImage !== '') ? <div className="loader"></div> :
+          (click === false && foxImage === '') ? <div className="loader"></div> :null
+        }
+        <button onClick={switchImage}>Click</button>
+    </div>
     </div>
   );
 }
